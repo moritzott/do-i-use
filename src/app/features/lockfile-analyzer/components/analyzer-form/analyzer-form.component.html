@@ -1,0 +1,45 @@
+<div>
+  <h1 class="d-flex justify-content-center mx-4 mt-4 mb-3">Do I use?</h1>
+  <h6 class="d-flex justify-content-center mx-4 fst-italic">
+    Search for npm packages in your package-lock.json-file
+  </h6>
+</div>
+
+<div class="form w-100 m-auto">
+  <div class="shadow p-3 mb-5 rounded">
+    <form>
+      <div class="mb-3">
+        <label for="packageName" class="form-label">Package name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="packageName"
+          name="package-name"
+          placeholder="@angular/core"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="packageVerison" class="form-label">Package version</label>
+        <input
+          type="text"
+          class="form-control"
+          id="packageVersion"
+          name="package-version"
+          placeholder="21.3.14"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="packageLockJson" class="form-label">Your package-lock.json</label>
+        <textarea
+          class="form-control"
+          name="package-lock.json"
+          id="packageLockJson"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Check</button>
+      </div>
+    </form>
+  </div>
+</div>

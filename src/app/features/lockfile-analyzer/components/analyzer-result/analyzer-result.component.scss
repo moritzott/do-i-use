@@ -1,0 +1,57 @@
+.result-container {
+  margin-top: 2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.result {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+}
+
+.success {
+  background-color: #e6f7ec;
+  border-color: #2ecc71;
+}
+
+.not-found {
+  background-color: #fdecea;
+  border-color: #e74c3c;
+}
+
+.error {
+  background-color: #fff4e5;
+  border-color: #f39c12;
+}
+
+.occurrence {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.path {
+  word-break: break-all;
+  font-family: monospace;
+  margin-bottom: 0.5rem;
+}
+
+.yes {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.no {
+  color: #e67e22;
+  font-weight: 600;
+}
+
+pre {
+  background: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}

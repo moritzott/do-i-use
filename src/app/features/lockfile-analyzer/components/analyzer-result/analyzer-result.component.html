@@ -1,0 +1,41 @@
+<h3>Result</h3>
+<div class="result-container" *ngIf="result as r">
+  <!-- Fehler -->
+  <div *ngIf="r.error" class="result error">
+    <h3>⚠ Error</h3>
+    <p>{{ r.error }}</p>
+  </div>
+
+  <!-- Gefunden -->
+  <div *ngIf="!r.error && r.found" class="result success">
+    <h3>✅ Package Found</h3>
+    <p>
+      Found {{ r.occurrences.length }}
+      occurrence(s).
+    </p>
+
+    <div class="occurrence" *ngFor="let occ of r.occurrences; trackBy: trackByPath">
+      <div class="path"><strong>Path:</strong> {{ occ.path }}</div>
+
+      <div><strong>Version:</strong> {{ occ.version }}</div>
+
+      <div>
+        <strong>Direct Dependency:</strong>
+        <span [class.yes]="occ.isDirectDependency" [class.no]="!occ.isDirectDependency">
+          {{ occ.isDirectDependency ? 'Yes' : 'No (transitive)' }}
+        </span>
+      </div>
+
+      <div *ngIf="occ.peerDependencies">
+        <strong>Peer Dependencies:</strong>
+        <pre>{{ occ.peerDependencies | json }}</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nicht gefunden -->
+  <div *ngIf="!r.error && !r.found" class="result not-found">
+    <h3>❌ Package Not Found</h3>
+    <p>No matching dependency detected.</p>
+  </div>
+</div>
