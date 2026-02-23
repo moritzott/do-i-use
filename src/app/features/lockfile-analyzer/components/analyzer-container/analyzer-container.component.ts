@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { LockfileFacade } from '../../services/lockfile-facade.service';
 import { AnalyzerFormComponent } from '../analyzer-form/analyzer-form.component';
 import { AnalyzerResult } from '../analyzer-result/analyzer-result.component';
-import { AnalysisResult } from '../../../../core/models/analysis-result.model';
 
 @Component({
   selector: 'app-analyzer-container',
@@ -12,19 +11,6 @@ import { AnalysisResult } from '../../../../core/models/analysis-result.model';
 })
 export class AnalyzerContainerComponent {
   public readonly lockfileFacade = inject(LockfileFacade);
-
-  result$ = this.lockfileFacade.result$;
-
-  demoResult: AnalysisResult = {
-    found: true,
-    occurrences: [
-      {
-        path: 'this/is/a/path',
-        version: '12.5.2',
-        isDirectDependency: true,
-      },
-    ],
-  };
 
   onSubmit(data: { raw: string; name: string; version: string }) {
     this.lockfileFacade.analyze(data.raw, {

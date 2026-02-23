@@ -1,4 +1,3 @@
 <app-analyzer-form (submitted)="onSubmit($event)"> </app-analyzer-form>
 
-<!-- <app-analyzer-result [result]="result$ | async"> </app-analyzer-result> -->
-<app-analyzer-result [result]="demoResult"></app-analyzer-result>
+<app-analyzer-result [result]="lockfileFacade.result()"> </app-analyzer-result>
