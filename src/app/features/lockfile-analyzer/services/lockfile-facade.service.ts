@@ -1,32 +1,29 @@
-import { BehaviorSubject } from "rxjs";
-import { PackageSearchQuery } from "../../../core/models/package-search-query.model";
-import { LockfileAnalysisService } from "./lockfile-analysis.service";
-import { LockfileParserService } from "./lockfile-parser.service";
-import { AnalysisResult } from "../../../core/models/analysis-result.model";
-import { Injectable } from "@angular/core";
+import { PackageSearchQuery } from '../../../core/models/package-search-query.model';
+import { LockfileAnalysisService } from './lockfile-analysis.service';
+import { LockfileParserService } from './lockfile-parser.service';
+import { AnalysisResult } from '../../../core/models/analysis-result.model';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LockfileFacade {
-
-  private resultSubject = new BehaviorSubject<AnalysisResult | null>(null);
-  result$ = this.resultSubject.asObservable();
+  private _result = signal<AnalysisResult | null>(null);
+  public readonly result = this._result.asReadonly();
 
   constructor(
     private parser: LockfileParserService,
-    private analyzer: LockfileAnalysisService
+    private analyzer: LockfileAnalysisService,
   ) {}
 
   analyze(raw: string, query: PackageSearchQuery) {
     try {
       const lockfile = this.parser.parse(raw);
       const result = this.analyzer.analyze(lockfile, query);
-      this.resultSubject.next(result);
-
+      this._result.set(result);
     } catch (e: any) {
-      this.resultSubject.next({
+      this._result.set({
         found: false,
         occurrences: [],
-        error: e.message
+        error: e.message,
       });
     }
   }
