@@ -13,9 +13,8 @@ export class AnalyzerContainerComponent {
   public readonly lockfileFacade = inject(LockfileFacade);
 
   onSubmit(data: { raw: string; name: string; version: string }) {
-    this.lockfileFacade.analyze(data.raw, {
-      name: data.name,
-      version: data.version,
-    });
+    this.lockfileFacade.load(data.raw);
+
+    this.lockfileFacade.analyze(data.name, data.version);
   }
 }
